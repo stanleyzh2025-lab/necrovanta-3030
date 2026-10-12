@@ -1,0 +1,15 @@
+{
+  "name": "necrovanta-3030",
+  "version": "1.0.0",
+  "description": "NECROVANTA:3030 - retro pixel-art zombie survival with online co-op",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "deploy": "node server.js --open",
+    "online": "node server.js --open --online",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

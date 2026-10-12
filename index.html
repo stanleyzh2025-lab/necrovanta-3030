@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NECROVANTA:3030</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="game"></canvas>
+    <div id="scanlines"></div>
+
+    <!-- In-game HUD -->
+    <div id="hud" class="hidden">
+      <div id="hud-left" class="hud-panel">
+        <div class="hp-row">
+          <img id="hp-icon" alt="">
+          <div class="hp-bar"><div id="hp-ghost"></div><div id="hp-fill"></div><div class="hp-seg"></div><span id="hp-text">100 / 100</span></div>
+        </div>
+        <div id="status"></div>
+        <div id="resources"></div>
+      </div>
+      <div id="hud-center">
+        <div id="wave-label">WAVE 0 / 100</div>
+        <div class="wave-bar"><div id="wave-fill"></div></div>
+        <div id="wave-sub"></div>
+      </div>
+      <div id="hud-right">
+        <div class="minimap-frame"><canvas id="minimap"></canvas></div>
+        <div id="zone-line"></div>
+        <div id="score-line" class="hud-panel"></div>
+      </div>
+      <div id="boss-bar" class="hidden"><div class="bb-name">OMEGA TITAN</div><div class="bb-track"><div id="boss-ghost"></div><div id="boss-fill"></div></div></div>
+      <div id="banner"></div>
+      <div id="hint"></div>
+      <div id="toasts"></div>
+      <div id="bottom">
+        <div id="build-bar" class="hidden"></div>
+        <div id="weapon-name"></div>
+        <div class="hotbar-row"><div id="hotbar"></div><div id="bag-count"></div></div>
+        <div id="keys-line">E OPEN/GATHER &middot; R RELOAD &middot; RMB ABILITY &middot; Q HEAL &middot; B BUILD &middot; I BAG &middot; C CRAFT &middot; U FORGE &middot; K MUSIC &middot; P PAUSE</div>
+      </div>
+    </div>
+
+    <!-- Menu panel -->
+    <div id="menu" class="hidden">
+      <div class="panel">
+        <div class="tabs">
+          <button data-tab="bag">BAG</button>
+          <button data-tab="supplies">SUPPLIES</button>
+          <button data-tab="craft">CRAFT</button>
+          <button data-tab="forge">FORGE</button>
+          <button data-tab="mods">MODS</button>
+          <button data-tab="survivor">SURVIVOR</button>
+          <button class="close" data-close>X</button>
+        </div>
+        <div id="menu-body"></div>
+        <div class="menu-foot">ESC TO CLOSE &middot; I / C / U / O SWITCH TABS &middot; GAME IS PAUSED</div>
+      </div>
+    </div>
+
+    <!-- Full screens: title, pause, game over, victory -->
+    <div id="screen" class="hidden"></div>
+  </div>
+
+  <!-- Load order matters: config first, main last -->
+  <script src="js/config.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/classes.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/weapons.js"></script>
+  <script src="js/zombies.js"></script>
+  <script src="js/structures.js"></script>
+  <script src="js/loot.js"></script>
+  <script src="js/waves.js"></script>
+  <script src="js/bosses.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/net.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

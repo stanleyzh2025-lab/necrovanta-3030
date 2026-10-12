@@ -1,0 +1,12 @@
+# Render blueprint: Render reads this to set up the game server automatically.
+# Free plan: the server sleeps after ~15 minutes with nobody playing, and the
+# first visit after that takes about a minute to wake it up.
+services:
+  - type: web
+    name: necrovanta-3030
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true
