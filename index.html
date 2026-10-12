@@ -68,25 +68,42 @@
   </div>
 
   <!-- Load order matters: config first, main last -->
-  <script src="js/config.js"></script>
-  <script src="js/util.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/input.js"></script>
-  <script src="js/sprites.js"></script>
-  <script src="js/map.js"></script>
-  <script src="js/effects.js"></script>
-  <script src="js/classes.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/weapons.js"></script>
-  <script src="js/zombies.js"></script>
-  <script src="js/structures.js"></script>
-  <script src="js/loot.js"></script>
-  <script src="js/waves.js"></script>
-  <script src="js/bosses.js"></script>
-  <script src="js/save.js"></script>
-  <script src="js/net.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/render.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/config.js" onerror="(window.__missing = window.__missing || []).push('js/config.js')"></script>
+  <script src="js/util.js" onerror="(window.__missing = window.__missing || []).push('js/util.js')"></script>
+  <script src="js/audio.js" onerror="(window.__missing = window.__missing || []).push('js/audio.js')"></script>
+  <script src="js/input.js" onerror="(window.__missing = window.__missing || []).push('js/input.js')"></script>
+  <script src="js/sprites.js" onerror="(window.__missing = window.__missing || []).push('js/sprites.js')"></script>
+  <script src="js/map.js" onerror="(window.__missing = window.__missing || []).push('js/map.js')"></script>
+  <script src="js/effects.js" onerror="(window.__missing = window.__missing || []).push('js/effects.js')"></script>
+  <script src="js/classes.js" onerror="(window.__missing = window.__missing || []).push('js/classes.js')"></script>
+  <script src="js/player.js" onerror="(window.__missing = window.__missing || []).push('js/player.js')"></script>
+  <script src="js/weapons.js" onerror="(window.__missing = window.__missing || []).push('js/weapons.js')"></script>
+  <script src="js/zombies.js" onerror="(window.__missing = window.__missing || []).push('js/zombies.js')"></script>
+  <script src="js/structures.js" onerror="(window.__missing = window.__missing || []).push('js/structures.js')"></script>
+  <script src="js/loot.js" onerror="(window.__missing = window.__missing || []).push('js/loot.js')"></script>
+  <script src="js/waves.js" onerror="(window.__missing = window.__missing || []).push('js/waves.js')"></script>
+  <script src="js/bosses.js" onerror="(window.__missing = window.__missing || []).push('js/bosses.js')"></script>
+  <script src="js/save.js" onerror="(window.__missing = window.__missing || []).push('js/save.js')"></script>
+  <script src="js/net.js" onerror="(window.__missing = window.__missing || []).push('js/net.js')"></script>
+  <script src="js/ui.js" onerror="(window.__missing = window.__missing || []).push('js/ui.js')"></script>
+  <script src="js/render.js" onerror="(window.__missing = window.__missing || []).push('js/render.js')"></script>
+  <script src="js/main.js" onerror="(window.__missing = window.__missing || []).push('js/main.js')"></script>
+  <!-- If the game code didn't load or crashed while starting, say so instead of showing a black screen. -->
+  <script>
+    window.addEventListener('error', function (e) { window.__firstError = window.__firstError || (e.message + (e.filename ? ' (' + e.filename.split('/').pop() + ':' + e.lineno + ')' : '')); });
+    window.addEventListener('load', function () {
+      if (typeof Main !== 'undefined' && Main.canvas) return;   // started fine
+      var missing = window.__missing || [];
+      var box = document.createElement('div');
+      box.style.cssText = 'position:fixed;inset:0;z-index:99;background:#07070d;color:#e8e8f0;font:16px/1.6 monospace;padding:40px;overflow:auto';
+      box.innerHTML = '<h2 style="color:#ff3d4e">NECROVANTA:3030 could not start</h2>' +
+        (missing.length ? '<p>These game files are missing:</p><pre style="color:#ffd040"></pre>' +
+          '<p>If you put the game online, upload the whole <b>js</b> folder (20 files) next to index.html.</p>'
+          : '<p>Error: <span style="color:#ffd040"></span></p><p>Try reloading the page.</p>');
+      document.body.appendChild(box);
+      if (missing.length) box.querySelector('pre').textContent = missing.join('\n');
+      else box.querySelector('span').textContent = window.__firstError || 'unknown';
+    });
+  </script>
 </body>
 </html>

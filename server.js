@@ -47,10 +47,16 @@ const server = http.createServer((req, res) => {
   if (!file.startsWith(ROOT + path.sep) || file.split(path.sep).some(part => part.startsWith('.')) || !MIME[ext]) {
     res.writeHead(404); res.end('Not found'); return;
   }
-  fs.readFile(file, (err, data) => {
-    if (err) { res.writeHead(404); res.end('Not found'); return; }
+  const send = data => {
     res.writeHead(200, { 'Content-Type': MIME[ext], 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' });
     res.end(req.method === 'HEAD' ? undefined : data);
+  };
+  const notFound = () => { res.writeHead(404); res.end('Not found'); };
+  fs.readFile(file, (err, data) => {
+    if (!err) { send(data); return; }
+    // Game files uploaded without their js/ folder (all in the top level) still work.
+    if (rel.startsWith('/js/')) { fs.readFile(path.join(ROOT, path.basename(file)), (err2, data2) => (err2 ? notFound() : send(data2))); return; }
+    notFound();
   });
 });
 

@@ -59,12 +59,15 @@ Menus don't pause an online game. Online games aren't saved (single-player saves
   Anyone with the link can see your public rooms, so use a private room (password) for friends-only games.
 - **Join from anywhere, any time (your computer can be off):** host it free on Render. One time:
   1. Make a free account at github.com, click **New repository**, name it `necrovanta-3030`, create it, then
-     click **uploading an existing file** and drag in everything from this folder (`index.html`, `style.css`,
-     `server.js`, `package.json`, `package-lock.json`, `render.yaml`, `README.md` and the `js` folder). Commit.
+     click **uploading an existing file** and **drag** everything from this folder onto the page in one go
+     (`index.html`, `style.css`, `server.js`, `package.json`, `package-lock.json`, `render.yaml`, `README.md`
+     **and the `js` folder** - drag the folder itself; the "choose your files" button can't pick folders).
+     Commit. If the `js` folder won't upload, drag the 20 files from inside it instead - that works too.
   2. Make a free account at render.com (sign in with GitHub), click **New** > **Blueprint**, pick the
      `necrovanta-3030` repository and click **Apply**. Render reads `render.yaml` and starts the server.
   3. After a few minutes you get a permanent link like `https://necrovanta-3030.onrender.com`. Open it on any
      phone, tablet or computer, anywhere, press MULTIPLAYER > CONNECT, and create or join a room.
+  If the page says "could not start" and lists missing files, those files didn't reach GitHub: upload them.
   On the free plan the server sleeps after ~15 minutes with nobody on it; the first visit after that takes
   about a minute. To update the game later, upload the changed files to GitHub again; Render redeploys itself.
 The pixel font loads from Google Fonts; offline it falls back to a monospace font.
